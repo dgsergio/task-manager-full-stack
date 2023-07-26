@@ -1,0 +1,17 @@
+{
+  "name": "task-manager-back",
+  "version": "1.0.0",
+  "description": "task manager back end with node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Sergio DG",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
