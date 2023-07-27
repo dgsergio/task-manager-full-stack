@@ -4,6 +4,7 @@ const authRoutes = require('./routes/auth');
 const tasksRoutes = require('./routes/tasks');
 const notFound = require('./middleware/not-found');
 const errorHandler = require('./middleware/error-handler');
+const authorization = require('./middleware/authorization');
 require('dotenv').config();
 const connectDB = require('./db/connect');
 
@@ -13,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 app.use('/api/v1', authRoutes);
-app.use('/api/v1/tasks', tasksRoutes);
+app.use('/api/v1/tasks', authorization, tasksRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
