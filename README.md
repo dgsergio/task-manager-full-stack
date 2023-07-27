@@ -1,5 +1,7 @@
 # Task Manager API
 
+MERN Stack
+
 ## Front
 
 A task manager app with ReactJS.
@@ -15,8 +17,8 @@ Create a task manager app
 - [ ] Back-end development
 
   - [ ] Create a NodeJS back-end
-  - [ ] Login and register functions
-  - [ ] authorize with token
+  - [x] Login and register functions
+  - [x] authorize with token
   - [ ] you only be able to manage your own tasks
 
 - [ ] front-end development
