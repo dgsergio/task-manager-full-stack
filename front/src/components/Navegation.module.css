@@ -1,0 +1,23 @@
+.main-nav {
+  background-color: var(--grey-800);
+  padding: 0.6rem;
+  border-radius: 1.1rem;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.main-nav-form input {
+  background-color: var(--grey-700);
+  color: white;
+  font-size: 1rem;
+  border-radius: 1rem;
+  border: none;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+}
+
+.main-nav-form input:focus {
+  background-color: var(--grey-300);
+  outline: none;
+  color: var(--black);
+}

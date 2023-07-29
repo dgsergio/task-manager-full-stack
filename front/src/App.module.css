@@ -1,0 +1,7 @@
+.container {
+  max-width: 56rem;
+  background-color: var(--beige);
+  border-radius: 0.9rem;
+  padding: 2rem 3.1rem;
+  margin: 3.5rem auto 0;
+}

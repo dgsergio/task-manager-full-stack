@@ -1,0 +1,10 @@
+.card {
+  background-color: var(--pink);
+  padding: 1.3rem;
+  border-radius: 1.4rem;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.6rem;
+}

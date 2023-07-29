@@ -16,8 +16,9 @@ Create a task manager app
 
 - [ ] front-end development
 
-  - [ ] Create a ReactJS front-end
-  - [ ] Find a cool ui design
+  - [x] Create a ReactJS front-end
+  - [x] Find a cool ui design
+  - [ ] Select a font
 
 - [x] Back-end development
 

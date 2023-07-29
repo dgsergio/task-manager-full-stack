@@ -1,0 +1,40 @@
+:root {
+  --yellow: #f7d78c;
+  --green: #c7d0bd;
+  --pink: #f2b2d7;
+  --beige: #f6f5f0;
+  --blue-400: #a3a8fc;
+  --blue-900: #0d1323;
+  --grey-50: #f4f5f9;
+  --grey-300: #a4a8ab;
+  --grey-700: #2f3237;
+  --grey-800: #24272c;
+  --black: #000407;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 62.5%;
+  background-color: var(--blue-900);
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  color: var(--black);
+}
+
+p {
+  font-size: 1.1rem;
+}
