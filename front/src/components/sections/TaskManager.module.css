@@ -1,0 +1,27 @@
+.manager-card {
+  border: 0.3rem solid #fff;
+}
+
+.manager-card form {
+  display: flex;
+  flex-direction: column;
+  margin: 0.9rem 0.9rem 1.5rem;
+  gap: 1.7rem;
+}
+
+.manager-card-form-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.manager-card input,
+.manager-card textarea {
+  padding: 0.9rem;
+  border-radius: 0.9rem;
+  border-color: transparent;
+}
+
+.manager-card input::placeholder,
+.manager-card textarea::placeholder {
+  font-family: 'REM', sans-serif;
+}
