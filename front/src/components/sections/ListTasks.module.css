@@ -3,3 +3,24 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1.8rem;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 2rem;
+}
+
+.header button {
+  background-color: transparent;
+  padding: 0 0.5rem;
+  opacity: 0.54;
+}
+
+.header button:hover {
+  transform: scale(1.2);
+  opacity: 0.9;
+}

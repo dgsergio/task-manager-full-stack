@@ -1,5 +1,6 @@
 .manager-card {
   border: 0.3rem solid #fff;
+  box-shadow: 0.3rem 0.3rem 0.7rem rgb(0, 0, 0, 0.1);
 }
 
 .manager-card form {
@@ -9,19 +10,101 @@
   gap: 1.7rem;
 }
 
+.manager-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.manager-card-btns {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: right;
+}
+
+.manager-card-btns button {
+  box-shadow: 0.3rem 0.3rem 0.3rem rgb(0, 0, 0, 0.1);
+  font-family: 'REM', sans-serif;
+  color: var(--grey-500);
+}
+
+.manager-card-btns button:first-child {
+  background-color: transparent;
+  border: 0.3rem solid #fff;
+  color: var(--grey-500);
+}
+.manager-card-btns button:hover {
+  color: white;
+  background-color: #6ada5f;
+}
+.manager-card-btns button:first-child:hover {
+  background-color: #f88989;
+  border-color: #f88989;
+}
+
 .manager-card-form-block {
   display: flex;
   flex-direction: column;
 }
 
-.manager-card input,
+.manager-card input[type='text'],
 .manager-card textarea {
   padding: 0.9rem;
   border-radius: 0.9rem;
   border-color: transparent;
+  box-shadow: 0.3rem 0.3rem 0.2rem rgb(0, 0, 0, 0.06);
 }
 
 .manager-card input::placeholder,
 .manager-card textarea::placeholder {
   font-family: 'REM', sans-serif;
+}
+
+.manager-card-footer-colors {
+  display: flex;
+  gap: 0.7rem;
+}
+
+input[type='radio'] {
+  background-color: var(--yellow);
+  box-shadow: 0.3rem 0.3rem 0.2rem rgb(0, 0, 0, 0.06);
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  color: #fff;
+  width: 1.6rem;
+  border-radius: 0.4rem;
+  height: 1.6rem;
+  display: grid;
+  place-content: center;
+}
+
+input[type='radio']:nth-child(2) {
+  background-color: var(--pink);
+}
+input[type='radio']:last-child {
+  background-color: var(--green);
+}
+
+input[type='radio']::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  border-radius: 0.2rem;
+  background-color: #fff;
+}
+
+input[type='radio']:checked::before {
+  transform: scale(1);
+}
+
+input[type='radio']:hover {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+.manager-card form:focus-within {
+  color: var(--form-control-color);
 }

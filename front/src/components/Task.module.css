@@ -1,8 +1,55 @@
 .card {
-  background-color: var(--pink);
+  animation: fadeIn 300ms ease-in;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .card h3 {
   margin: 0;
   font-size: 1.3rem;
+}
+
+.pink {
+  background-color: var(--pink);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.card-icons {
+  position: absolute;
+  bottom: 0;
+  right: 0.5rem;
+}
+
+.card-icons img {
+  width: 1.2rem;
+}
+
+.card-icons button {
+  background-color: transparent;
+  padding: 0.4rem;
+  opacity: 0.3;
+}
+
+.card-icons button:hover {
+  opacity: 0.9;
+  transform: scale(1.3);
+}
+
+.card p {
+  margin-bottom: 1.5rem;
 }

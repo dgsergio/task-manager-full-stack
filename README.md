@@ -19,8 +19,8 @@ Create a task manager app
   - [x] Create a ReactJS front-end
   - [x] Find a cool ui design
   - [x] Select a font
+  - [x] Assign a color to the tasks
   - [ ] Select one title H1
-  - [ ] Assign a random color to the tasks
 
 - [x] Back-end development
 

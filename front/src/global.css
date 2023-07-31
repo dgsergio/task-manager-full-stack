@@ -8,6 +8,8 @@
   --blue-900: #0d1323;
   --grey-50: #f4f5f9;
   --grey-300: #a4a8ab;
+  --grey-500: #6f7475;
+  --grey-600: #515557;
   --grey-700: #2f3237;
   --grey-800: #24272c;
   --black: #000407;
@@ -63,4 +65,14 @@ label {
   margin-bottom: 0.5rem;
   margin-left: 0.9rem;
   font-size: 0.9rem;
+  color: var(--grey-600);
+}
+
+button {
+  cursor: pointer;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.6rem;
+  border: none;
+  background-color: white;
+  transition: all 300ms;
 }
