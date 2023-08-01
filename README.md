@@ -30,5 +30,6 @@ Create a task manager app
   - [x] Hash Password (with bcryptjs)
   - [x] Mongoose Errors
   - [x] Security: helmet, cors, express-rate-limit
+  - [x] Add "color" to models
 
 - [ ] Make it work together

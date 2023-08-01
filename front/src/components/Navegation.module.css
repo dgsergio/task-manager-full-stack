@@ -1,9 +1,12 @@
 .main-nav {
   background-color: var(--grey-800);
-  padding: 0.6rem;
+  padding: 0.6rem 1rem;
   border-radius: 1.1rem;
   max-width: 36rem;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-nav-form input {
@@ -24,4 +27,32 @@
 
 .main-nav-form input:focus::placeholder {
   color: var(--grey-500);
+}
+
+.main-nav-user {
+  display: flex;
+  align-items: center;
+  color: var(--grey-300);
+  column-gap: 0.8rem;
+}
+
+.main-nav-user-icon {
+  padding: 0.2rem;
+  border-radius: 50%;
+  border: 0.2rem solid var(--grey-500);
+  opacity: 0.7;
+  transition: opacity 300ms ease-out;
+}
+
+.main-nav-user-icon:hover {
+  opacity: 1;
+}
+
+.main-nav-user-icon button {
+  background-color: var(--grey-50);
+  color: #13213a;
+  font-weight: 600;
+  padding: 0.4rem;
+  border-radius: 50%;
+  font-size: 1rem;
 }

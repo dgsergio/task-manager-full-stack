@@ -3,8 +3,11 @@ export type TaskType = {
   title?: string;
   description: string;
   color: string;
-  createdBy: string;
-  createdAt: string;
-  updatedAt: string;
   completed: boolean;
+};
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
 };

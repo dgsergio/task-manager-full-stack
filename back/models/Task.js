@@ -20,6 +20,15 @@ const taskSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    color: {
+      type: String,
+      enum: ['yellow', 'pink', 'green'],
+      default: 'yellow',
+    },
   },
   { timestamps: true }
 );
