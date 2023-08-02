@@ -18,6 +18,18 @@
   padding: 0.3rem;
   z-index: 10;
   box-shadow: 0.3rem 0.3rem 0.5rem rgb(0, 0, 0, 0.1);
+  animation: fadeDown 150ms ease-out;
+}
+
+@keyframes fadeDown {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .options li {
@@ -40,5 +52,5 @@
 }
 
 .options button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
 }

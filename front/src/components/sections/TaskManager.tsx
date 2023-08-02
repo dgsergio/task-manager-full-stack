@@ -5,6 +5,7 @@ import { RootState } from '../../store';
 import { createTask, toggleManager, selectTask } from '../../store/tasksSlice';
 import { useEffect, useRef, useState } from 'react';
 import { TaskType } from '../../models/types';
+import { validation, Validator } from '../../utils/validation';
 
 function TaskManager() {
   const [colorTask, setColorTask] = useState<string>('yellow');
@@ -32,19 +33,25 @@ function TaskManager() {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!descRef.current || descRef.current.value.trim().length < 1) {
-      setError('Please provide a description');
+    const validator: Validator = validation(
+      titleRef.current?.value,
+      descRef.current?.value
+    );
+
+    if (validator.hasError) {
+      setError(validator.msg);
       setTimeout(() => {
         setError('');
       }, 4000);
       return;
     }
+
     const newTask: TaskType = {
       id: taskSelected?.id || Date.now().toString(),
       title: titleRef.current?.value || '',
       color: colorTask,
       completed: taskSelected?.completed || false,
-      description: descRef.current.value,
+      description: descRef.current!.value,
     };
     dispatch(createTask(newTask));
   };

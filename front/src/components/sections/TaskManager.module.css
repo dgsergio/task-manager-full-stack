@@ -1,10 +1,10 @@
 .manager-card {
   border: 0.3rem solid #fff;
   box-shadow: 0.3rem 0.3rem 0.7rem rgb(0, 0, 0, 0.1);
-  animation: fadeIn 300ms ease-out;
+  animation: fade-in 300ms ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -124,12 +124,12 @@ input[type='radio']:hover {
   background-color: #ffdcdc;
   color: #b11515;
   padding: 0.5rem 2rem;
-  margin: 0;
+  margin: 1rem;
   border-radius: 0.4rem;
-  animation: popUp 250ms linear;
+  animation: pop-up 250ms linear;
 }
 
-@keyframes popUp {
+@keyframes pop-up {
   0% {
     transform: scale(0);
   }

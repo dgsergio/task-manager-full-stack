@@ -20,8 +20,9 @@ Create a task manager app
   - [x] Find a cool ui design
   - [x] Select a font
   - [x] Assign a color to the tasks
+  - [x] Fn validator maximum characteres for title and description
   - [ ] Select one title H1
-  - [ ] Fn validator maximum characteres for title and description
+  - [ ] Search task in nav
 
 - [x] Back-end development
 
