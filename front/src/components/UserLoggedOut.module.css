@@ -1,0 +1,25 @@
+.user button {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  color: var(--grey-300);
+  background: transparent;
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-family: 'REM', sans-serif;
+  padding: 00.2rem;
+}
+
+.user button img {
+  opacity: 0.5;
+  width: 2.2rem;
+  transition: all 200ms ease-out;
+}
+
+.user button img:hover {
+  opacity: 1;
+}
+
+.user button span {
+  padding-bottom: 0.2rem;
+}

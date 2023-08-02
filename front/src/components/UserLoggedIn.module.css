@@ -1,0 +1,27 @@
+.user {
+  display: flex;
+  align-items: center;
+  color: var(--grey-300);
+  column-gap: 0.8rem;
+}
+
+.user-icon {
+  padding: 0.2rem;
+  border-radius: 50%;
+  border: 0.2rem solid var(--grey-500);
+  opacity: 0.7;
+  transition: opacity 300ms ease-out;
+}
+
+.user-icon:hover {
+  opacity: 1;
+}
+
+.user-icon button {
+  background-color: var(--grey-50);
+  color: #13213a;
+  font-weight: 600;
+  padding: 0.4rem;
+  border-radius: 50%;
+  font-size: 1rem;
+}

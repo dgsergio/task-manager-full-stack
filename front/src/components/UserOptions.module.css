@@ -1,0 +1,44 @@
+.backdrop {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 5;
+}
+
+.options {
+  background-color: var(--grey-300);
+  position: absolute;
+  top: 2.75rem;
+  right: 1.3rem;
+  padding: 0;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+  padding: 0.3rem;
+  z-index: 10;
+  box-shadow: 0.3rem 0.3rem 0.5rem rgb(0, 0, 0, 0.1);
+}
+
+.options li {
+  list-style: none;
+  border-bottom: 0.1rem solid var(--grey-800);
+}
+
+.options li:last-child {
+  border: none;
+}
+
+.options button {
+  padding: 0.6rem 1.5rem;
+  width: 100%;
+  background: transparent;
+  font-size: 1.05rem;
+  font-weight: 200;
+  font-family: 'REM', sans-serif;
+  border-radius: 0;
+}
+
+.options button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

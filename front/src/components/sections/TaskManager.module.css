@@ -34,7 +34,6 @@
 
 .manager-card-btns button {
   box-shadow: 0.3rem 0.3rem 0.3rem rgb(0, 0, 0, 0.1);
-  font-family: 'REM', sans-serif;
   color: var(--grey-500);
 }
 
@@ -66,15 +65,10 @@
 
 .manager-card input[type='text'],
 .manager-card textarea {
-  padding: 0.9rem;
-  border-radius: 0.9rem;
+  padding: 1rem;
+  border-radius: 1rem;
   border-color: transparent;
   box-shadow: 0.3rem 0.3rem 0.2rem rgb(0, 0, 0, 0.06);
-}
-
-.manager-card input::placeholder,
-.manager-card textarea::placeholder {
-  font-family: 'REM', sans-serif;
 }
 
 .manager-card-footer-colors {

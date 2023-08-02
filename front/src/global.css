@@ -4,8 +4,9 @@
   --green: #c7d0bd;
   --pink: #f2b2d7;
   --beige: #f6f5f0;
-  --blue-400: #a3a8fc;
-  --blue-900: #0d1323;
+  --blue-400: #a3b8fc;
+  --blue-500: #295fb6;
+  --blue-900: #0d1823;
   --grey-50: #f4f5f9;
   --grey-300: #a4a8ab;
   --grey-500: #6f7475;
@@ -53,6 +54,13 @@ section h2 {
   font-weight: 600;
 }
 
+input {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0.4rem 0;
+}
+
 input::placeholder,
 textarea::placeholder {
   font-family: 'REM', sans-serif;
@@ -75,4 +83,5 @@ button {
   border: none;
   background-color: white;
   transition: all 300ms;
+  font-family: 'REM', sans-serif;
 }
