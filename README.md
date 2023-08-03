@@ -21,8 +21,8 @@ Create a task manager app
   - [x] Select a font
   - [x] Assign a color to the tasks
   - [x] Fn validator maximum characteres for title and description
+  - [x] Search task in nav
   - [ ] Select one title H1
-  - [ ] Search task in nav
 
 - [x] Back-end development
 

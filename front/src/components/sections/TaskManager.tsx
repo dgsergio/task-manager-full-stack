@@ -2,7 +2,12 @@ import Card from '../UI/Card';
 import styles from './TaskManager.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { createTask, toggleManager, selectTask } from '../../store/tasksSlice';
+import {
+  createTask,
+  toggleManager,
+  selectTask,
+  searchTasks,
+} from '../../store/tasksSlice';
 import { useEffect, useRef, useState } from 'react';
 import { TaskType } from '../../models/types';
 import { validation, Validator } from '../../utils/validation';
@@ -33,6 +38,8 @@ function TaskManager() {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(searchTasks(''));
+
     const validator: Validator = validation(
       titleRef.current?.value,
       descRef.current?.value

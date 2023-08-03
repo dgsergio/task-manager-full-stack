@@ -10,7 +10,13 @@
   position: relative;
 }
 
+.main-nav-form {
+  display: flex;
+  align-items: center;
+}
+
 .main-nav-form input {
+  position: absolute;
   background-color: var(--grey-700);
   color: white;
   margin: 0 auto;
@@ -18,11 +24,32 @@
 }
 
 .main-nav-form input:focus {
-  background-color: var(--grey-300);
+  background-color: var(--grey-500);
   outline: none;
-  color: var(--black);
 }
 
-.main-nav-form input:focus::placeholder {
-  color: var(--grey-500);
+.main-nav-form button {
+  position: relative;
+  left: 10.6rem;
+  top: 0.1rem;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+.main-nav-form button img {
+  filter: grayscale();
+  transition: filter 200ms ease-out;
+}
+.main-nav-form button img:hover {
+  filter: none;
+}
+
+.main-nav-form button:disabled {
+  cursor: auto;
+}
+
+.main-nav-form img {
+  width: 1.4rem;
+  right: 1rem;
+  top: 0;
 }

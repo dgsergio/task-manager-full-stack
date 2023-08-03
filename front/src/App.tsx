@@ -14,6 +14,12 @@ function App() {
   );
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const dispatch = useDispatch();
+  const searchedTasks = useSelector(
+    (state: RootState) => state.tasks.searchedTasks
+  );
+
+  const ids = searchedTasks?.map((i) => i.id);
+  const filteredTasks = tasks.filter((task) => ids?.includes(task.id));
 
   useEffect(() => {
     dispatch(populate(dummyTasks));
@@ -24,7 +30,9 @@ function App() {
       <Header />
       <main>
         {showManager && <TaskManager />}
-        <ListTasks tasks={tasks} />
+        {!showManager && (
+          <ListTasks tasks={!searchedTasks ? tasks : filteredTasks} />
+        )}
       </main>
     </div>
   );

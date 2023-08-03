@@ -4,12 +4,14 @@ import { TaskType } from '../models/types';
 
 export interface TaskState {
   tasks: TaskType[];
+  searchedTasks: TaskType[] | undefined;
   idSelected: string;
   showManager: boolean;
 }
 
 const initialState: TaskState = {
   tasks: [],
+  searchedTasks: undefined,
   idSelected: '',
   showManager: false,
 };
@@ -41,10 +43,29 @@ export const tasksSlice = createSlice({
     selectTask: (state, action: PayloadAction<string>) => {
       state.idSelected = action.payload;
     },
+    searchTasks: (state, action: PayloadAction<string>) => {
+      if (action.payload.trim() === '') state.searchedTasks = state.tasks;
+      state.searchedTasks = state.tasks.filter((task) => {
+        const descLowerCase = task.description.toLowerCase();
+        const titleLowerCase = task.title?.toLowerCase() || '';
+        const queryLowerCase = action.payload.toLowerCase();
+
+        return (
+          descLowerCase.includes(queryLowerCase) ||
+          titleLowerCase.includes(queryLowerCase)
+        );
+      });
+    },
   },
 });
 
-export const { toggleManager, populate, createTask, deleteTask, selectTask } =
-  tasksSlice.actions;
+export const {
+  toggleManager,
+  populate,
+  createTask,
+  deleteTask,
+  selectTask,
+  searchTasks,
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;
