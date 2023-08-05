@@ -9,8 +9,8 @@ import {
   searchTasks,
 } from '../../store/tasksSlice';
 import { useEffect, useRef, useState } from 'react';
-import { TaskType } from '../../models/types';
-import { validation, Validator } from '../../utils/validation';
+import { TaskType, Validator } from '../../models/types';
+import { taskValidation } from '../../utils/taskValidation';
 
 function TaskManager() {
   const [colorTask, setColorTask] = useState<string>('yellow');
@@ -40,7 +40,7 @@ function TaskManager() {
     e.preventDefault();
     dispatch(searchTasks(''));
 
-    const validator: Validator = validation(
+    const validator: Validator = taskValidation(
       titleRef.current?.value,
       descRef.current?.value
     );

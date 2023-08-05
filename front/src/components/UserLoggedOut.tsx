@@ -1,11 +1,11 @@
 import styles from './UserLoggedOut.module.css';
 import loginIcon from '../assets/login.svg';
 
-function UserLoggedOut({
-  onShowOptions,
-}: {
+type Props = {
   onShowOptions: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+};
+
+function UserLoggedOut({ onShowOptions }: Props) {
   return (
     <div className={styles.user}>
       <button onClick={() => onShowOptions((pV) => !pV)}>

@@ -1,9 +1,6 @@
-export type Validator = {
-  hasError: boolean;
-  msg: string;
-};
+import { Validator } from '../models/types';
 
-export const validation = (
+export const taskValidation = (
   title: string = '',
   description: string = ''
 ): Validator => {

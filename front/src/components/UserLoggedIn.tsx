@@ -1,5 +1,5 @@
 import styles from './UserLoggedIn.module.css';
-import { User } from '../models/types';
+import { User } from '../store/userSlice';
 
 type Props = {
   user: User;

@@ -6,8 +6,7 @@ export type TaskType = {
   completed: boolean;
 };
 
-export type User = {
-  id: string;
-  name: string;
-  email: string;
+export type Validator = {
+  hasError: boolean;
+  msg: string;
 };

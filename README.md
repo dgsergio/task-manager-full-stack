@@ -23,6 +23,7 @@ Create a task manager app
   - [x] Fn validator maximum characteres for title and description
   - [x] Search task in nav
   - [ ] Select one title H1
+  - [ ] Navegation user name capitalize
 
 - [x] Back-end development
 

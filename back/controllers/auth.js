@@ -5,9 +5,9 @@ require('express-async-errors');
 
 const signup = async (req, res) => {
   const user = await User.create(req.body);
-  const { _id, name, email } = user;
+  const { _id, name } = user;
   const token = user.createToken(_id);
-  res.status(StatusCodes.CREATED).json({ user: { name, email }, token });
+  res.status(StatusCodes.CREATED).json({ user: { name }, token });
 };
 
 const login = async (req, res) => {

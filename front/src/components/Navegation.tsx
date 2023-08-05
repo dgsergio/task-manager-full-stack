@@ -1,19 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Navegation.module.css';
 import UserLoggedIn from './UserLoggedIn';
 import UserLoggedOut from './UserLoggedOut';
 import UserOptions from './UserOptions';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
 import searchIcon from '../assets/search.svg';
 import deleteIcon from '../assets/delete.svg';
 import { searchTasks, toggleManager } from '../store/tasksSlice';
+import { RootState } from '../store';
+import { User } from '../store/userSlice';
 
 function Navegation() {
   const [showOptions, setSowOptions] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
-  const user = useSelector((state: RootState) => state.user.user);
+  const [user, setUser] = useState<User>();
+  const userStore = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!userStore) {
+      const userBrowserStored = localStorage.getItem('user');
+      if (userBrowserStored) setUser(JSON.parse(userBrowserStored));
+      else setUser(undefined);
+    } else setUser(userStore);
+  }, [userStore, showOptions]);
 
   const queryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(toggleManager(false));
@@ -46,7 +56,7 @@ function Navegation() {
       </form>
       {user && <UserLoggedIn user={user} onShowOptions={setSowOptions} />}
       {!user && <UserLoggedOut onShowOptions={setSowOptions} />}
-      {showOptions && <UserOptions onShowOptions={setSowOptions} />}
+      {showOptions && <UserOptions user={user} onShowOptions={setSowOptions} />}
     </nav>
   );
 }

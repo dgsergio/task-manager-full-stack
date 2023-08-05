@@ -1,12 +1,17 @@
 import styles from './UserOptions.module.css';
 import { useDispatch } from 'react-redux';
-import { toggleSignin, toggleSignup } from '../store/userSlice';
+import {
+  User,
+  signinUser,
+  toggleSignin,
+  toggleSignup,
+} from '../store/userSlice';
 
 type Props = {
+  user?: User;
   onShowOptions: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
-function UserOptions({ onShowOptions }: Props) {
+function UserOptions({ onShowOptions, user }: Props) {
   const dispatch = useDispatch();
 
   const signHandler = (isNew: boolean = false) => {
@@ -15,19 +20,31 @@ function UserOptions({ onShowOptions }: Props) {
     onShowOptions(false);
   };
 
+  const logoutHandler = () => {
+    onShowOptions(false);
+    dispatch(signinUser(undefined));
+    localStorage.clear();
+  };
+
   return (
     <>
       <div className={styles.backdrop} onClick={() => onShowOptions(false)} />
       <ul className={styles.options}>
-        <li>
-          <button onClick={() => signHandler()}>Log-in</button>
-        </li>
-        <li>
-          <button onClick={() => signHandler(true)}>Register</button>
-        </li>
-        <li>
-          <button>Log-out</button>
-        </li>
+        {!user && (
+          <>
+            <li>
+              <button onClick={() => signHandler()}>Log-in</button>
+            </li>
+            <li>
+              <button onClick={() => signHandler(true)}>Register</button>
+            </li>
+          </>
+        )}
+        {user && (
+          <li>
+            <button onClick={logoutHandler}>Log-out</button>
+          </li>
+        )}
       </ul>
     </>
   );
