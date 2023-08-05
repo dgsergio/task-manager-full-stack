@@ -1,12 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { TaskType } from '../models/types';
+import { AppDispatch } from '.';
+
+export type TaskType = {
+  id: string;
+  title?: string;
+  description: string;
+  color: string;
+  completed: boolean;
+};
 
 export interface TaskState {
   tasks: TaskType[];
   searchedTasks: TaskType[] | undefined;
   idSelected: string;
   showManager: boolean;
+  requestStatus: { loading: boolean; msg: string };
 }
 
 const initialState: TaskState = {
@@ -14,6 +23,7 @@ const initialState: TaskState = {
   searchedTasks: undefined,
   idSelected: '',
   showManager: false,
+  requestStatus: { loading: false, msg: '' },
 };
 
 export const tasksSlice = createSlice({
@@ -56,8 +66,73 @@ export const tasksSlice = createSlice({
         );
       });
     },
+    setStatus: (
+      state,
+      action: PayloadAction<{ loading: boolean; msg: string }>
+    ) => {
+      state.requestStatus = action.payload;
+    },
   },
 });
+
+export type TaskReq = {
+  url: string;
+  token: string;
+  method?: 'POST' | 'PATCH' | 'DELETE';
+  body?: {
+    title?: string;
+    description: string;
+  };
+};
+
+type TaskApiType = {
+  _id: string;
+  title?: string;
+  description: string;
+  color: string;
+  completed: boolean;
+};
+
+export const callTaskApi = (req: TaskReq) => {
+  const transformTaskData = (tasks: TaskApiType[]) => {
+    let newTask: TaskType[] = [];
+    for (const task of tasks) {
+      newTask.push({
+        id: task._id,
+        color: task.color,
+        title: task.title,
+        description: task.description,
+        completed: task.completed,
+      });
+    }
+    return newTask;
+  };
+
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setStatus({ loading: true, msg: '' }));
+      const response = await fetch(req.url, {
+        method: req.method || 'GET',
+        headers: req.method
+          ? {
+              Authorization: `Bearer ${req.token}`,
+            }
+          : {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${req.token}`,
+            },
+        body: req.body ? JSON.stringify(req.body) : null,
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.msg);
+      const transformedData = transformTaskData(data.tasks);
+      if (!req.method) dispatch(populate(transformedData));
+      dispatch(setStatus({ loading: false, msg: '' }));
+    } catch (err: any) {
+      dispatch(setStatus({ loading: false, msg: err.message }));
+    }
+  };
+};
 
 export const {
   toggleManager,
@@ -66,6 +141,7 @@ export const {
   deleteTask,
   selectTask,
   searchTasks,
+  setStatus,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

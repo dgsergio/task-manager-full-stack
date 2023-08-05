@@ -4,25 +4,31 @@ import styles from './App.module.css';
 import ListTasks from './components/sections/ListTasks';
 import TaskManager from './components/sections/TaskManager';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './store';
-import { populate } from './store/tasksSlice';
-import { dummyTasks } from './mocks/dummy';
+import { AppDispatch, RootState } from './store';
+import { TaskReq, callTaskApi } from './store/tasksSlice';
 
 function App() {
-  const showManager = useSelector(
-    (state: RootState) => state.tasks.showManager
-  );
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const searchedTasks = useSelector(
     (state: RootState) => state.tasks.searchedTasks
   );
-
+  const showManager = useSelector(
+    (state: RootState) => state.tasks.showManager
+  );
   const ids = searchedTasks?.map((i) => i.id);
   const filteredTasks = tasks.filter((task) => ids?.includes(task.id));
 
   useEffect(() => {
-    dispatch(populate(dummyTasks));
+    const userLocal = localStorage.getItem('user');
+
+    if (userLocal) {
+      const request: TaskReq = {
+        url: 'http://localhost:3000/api/v1/tasks',
+        token: JSON.parse(userLocal).token,
+      };
+      dispatch(callTaskApi(request));
+    }
   }, []);
 
   return (

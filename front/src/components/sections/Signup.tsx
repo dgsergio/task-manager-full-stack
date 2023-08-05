@@ -88,7 +88,7 @@ function Signup() {
           <p className={styles.error}>{msgValidator}</p>
         )}
         <button type="submit" disabled={requestStatus.loading}>
-          Create Account
+          {requestStatus.loading ? 'Loading' : 'Create Account'}
         </button>
       </form>
     </section>

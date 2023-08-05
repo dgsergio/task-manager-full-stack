@@ -1,10 +1,10 @@
 import Task from '../Task';
 import styles from './ListTasks.module.css';
-import { TaskType } from '../../models/types';
 import addIcon from '../../assets/add.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleManager } from '../../store/tasksSlice';
+import { TaskType, populate, toggleManager } from '../../store/tasksSlice';
 import { RootState } from '../../store';
+import { useEffect } from 'react';
 
 type Props = { tasks: TaskType[] };
 
@@ -13,6 +13,10 @@ function ListTasks({ tasks }: Props) {
   const showManager = useSelector(
     (state: RootState) => state.tasks.showManager
   );
+  const requestStatus = useSelector(
+    (state: RootState) => state.tasks.requestStatus
+  );
+  const userStore = useSelector((state: RootState) => state.user.user);
 
   return (
     <section>

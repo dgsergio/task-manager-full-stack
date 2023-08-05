@@ -7,14 +7,15 @@ type Props = {
 };
 
 function UserLoggedIn({ user, onShowOptions }: Props) {
-  const textIcon =
+  const userName = user.name[0].toUpperCase() + user.name.slice(1);
+  const userIcon =
     user.name[0].toUpperCase() + user.name[1].toLocaleLowerCase();
 
   return (
     <div className={styles.user}>
-      <span>Hi {user.name}!</span>
+      <span>Hi {userName}!</span>
       <div className={styles['user-icon']}>
-        <button onClick={() => onShowOptions((pV) => !pV)}>{textIcon}</button>
+        <button onClick={() => onShowOptions((pV) => !pV)}>{userIcon}</button>
       </div>
     </div>
   );

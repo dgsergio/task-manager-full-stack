@@ -22,8 +22,9 @@ Create a task manager app
   - [x] Assign a color to the tasks
   - [x] Fn validator maximum characteres for title and description
   - [x] Search task in nav
+  - [x] Navegation user name capitalize
   - [ ] Select one title H1
-  - [ ] Navegation user name capitalize
+  - [ ] Evrey time user change reload list of task
 
 - [x] Back-end development
 

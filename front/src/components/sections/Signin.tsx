@@ -70,7 +70,7 @@ function Signin() {
           <p className={styles.error}>{msgValidator}</p>
         )}
         <button type="submit" disabled={requestStatus.loading}>
-          Send
+          {requestStatus.loading ? 'Loading' : 'Send'}
         </button>
       </form>
     </section>
