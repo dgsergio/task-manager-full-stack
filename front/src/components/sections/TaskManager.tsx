@@ -1,15 +1,17 @@
 import Card from '../UI/Card';
 import styles from './TaskManager.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import {
   createTask,
   toggleManager,
   selectTask,
   searchTasks,
+  TaskType,
+  callTaskApi,
 } from '../../store/tasksSlice';
 import { useEffect, useRef, useState } from 'react';
-import { TaskType, Validator } from '../../models/types';
+import { Validator } from '../../models/types';
 import { taskValidation } from '../../utils/taskValidation';
 
 function TaskManager() {
@@ -17,7 +19,7 @@ function TaskManager() {
   const [error, setError] = useState<string>();
   const titleRef = useRef<HTMLInputElement>(null);
   const descRef = useRef<HTMLTextAreaElement>(null);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const idSelected = useSelector((state: RootState) => state.tasks.idSelected);
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
@@ -38,7 +40,7 @@ function TaskManager() {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(searchTasks(''));
+    dispatch(searchTasks(undefined));
 
     const validator: Validator = taskValidation(
       titleRef.current?.value,
@@ -60,6 +62,35 @@ function TaskManager() {
       completed: taskSelected?.completed || false,
       description: descRef.current!.value,
     };
+
+    const token = JSON.parse(localStorage.getItem('user')!).token;
+    if (!taskSelected) {
+      dispatch(
+        callTaskApi({
+          url: 'http://localhost:3000/api/v1/tasks',
+          token,
+          method: 'POST',
+          body: {
+            title: newTask.title,
+            color: newTask.color,
+            description: newTask.description,
+          },
+        })
+      );
+    } else {
+      dispatch(
+        callTaskApi({
+          url: 'http://localhost:3000/api/v1/tasks/' + newTask.id,
+          token,
+          method: 'PATCH',
+          body: {
+            title: newTask.title,
+            color: newTask.color,
+            description: newTask.description,
+          },
+        })
+      );
+    }
     dispatch(createTask(newTask));
   };
 

@@ -24,3 +24,8 @@
   transform: scale(1.2);
   opacity: 0.9;
 }
+
+.msg {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}

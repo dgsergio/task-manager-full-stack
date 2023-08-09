@@ -84,6 +84,14 @@ export const tasksSlice = createSlice({
   },
 });
 
+type TaskApiType = {
+  _id: string;
+  title?: string;
+  description: string;
+  color: string;
+  completed: boolean;
+};
+
 export type TaskReq = {
   url: string;
   token: string;
@@ -91,15 +99,8 @@ export type TaskReq = {
   body?: {
     title?: string;
     description: string;
+    color?: string;
   };
-};
-
-type TaskApiType = {
-  _id: string;
-  title?: string;
-  description: string;
-  color: string;
-  completed: boolean;
 };
 
 export const callTaskApi = (req: TaskReq) => {
@@ -122,20 +123,22 @@ export const callTaskApi = (req: TaskReq) => {
       dispatch(setStatus({ loading: true, msg: '' }));
       const response = await fetch(req.url, {
         method: req.method || 'GET',
-        headers: req.method
+        headers: req.body
           ? {
+              'Content-Type': 'application/json',
               Authorization: `Bearer ${req.token}`,
             }
           : {
-              'Content-Type': 'application/json',
               Authorization: `Bearer ${req.token}`,
             },
         body: req.body ? JSON.stringify(req.body) : null,
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.msg);
-      const transformedData = transformTaskData(data.tasks);
-      if (!req.method) dispatch(populate(transformedData));
+      if (!req.method) {
+        const transformedData = transformTaskData(data.tasks);
+        dispatch(populate(transformedData));
+      }
       dispatch(setStatus({ loading: false, msg: '' }));
     } catch (err: any) {
       dispatch(setStatus({ loading: false, msg: err.message }));

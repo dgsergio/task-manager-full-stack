@@ -47,7 +47,6 @@ function App() {
         {showListTasks && !showManager && (
           <>
             <ListTasks tasks={!searchedTasks ? tasks : filteredTasks} />
-            {taskStatus.loading && <div className="msg">Loading...</div>}
             {!taskStatus.loading && taskStatus.msg && (
               <div className="error msg">{taskStatus.msg}</div>
             )}

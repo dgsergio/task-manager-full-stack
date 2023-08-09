@@ -41,22 +41,26 @@ function Navegation() {
 
   return (
     <nav className={styles['main-nav']}>
-      <form className={styles['main-nav-form']}>
-        <input
-          onChange={queryHandler}
-          type="text"
-          placeholder="Type something..."
-          value={query}
-        />
-        <button
-          type="button"
-          onClick={deleteQuery}
-          disabled={query === '' && true}
-        >
-          {query === '' && <img src={searchIcon} alt="search icon" />}
-          {query !== '' && <img src={deleteIcon} alt="delete icon" />}
-        </button>
-      </form>
+      {user ? (
+        <form className={styles['main-nav-form']}>
+          <input
+            onChange={queryHandler}
+            type="text"
+            placeholder="Type something..."
+            value={query}
+          />
+          <button
+            type="button"
+            onClick={deleteQuery}
+            disabled={query === '' && true}
+          >
+            {query === '' && <img src={searchIcon} alt="search icon" />}
+            {query !== '' && <img src={deleteIcon} alt="delete icon" />}
+          </button>
+        </form>
+      ) : (
+        <span></span>
+      )}
       {user && <UserLoggedIn user={user} onShowOptions={setSowOptions} />}
       {!user && <UserLoggedOut onShowOptions={setSowOptions} />}
       {showOptions && <UserOptions user={user} onShowOptions={setSowOptions} />}

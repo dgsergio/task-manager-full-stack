@@ -26,8 +26,9 @@ Create a task manager app
   - [x] Every time user change reload list of task
   - [x] fix bug no showing err msg first time signin
   - [x] loading tasks state
-  - [ ] cRud
-  - [ ] Select one title H1
+  - [x] do not show search form on nav when log out
+  - [x] CRUD
+  - [ ] Select one title H1, maybe in the nav?
 
 - [x] Back-end development
 
@@ -39,4 +40,4 @@ Create a task manager app
   - [x] Security: helmet, cors, express-rate-limit
   - [x] Add "color" to models
 
-- [ ] Make it work together
+- [x] Make it work together
