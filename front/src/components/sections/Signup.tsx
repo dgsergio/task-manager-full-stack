@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { AppDispatch, RootState } from '../../store';
 import { signupValidation } from '../../utils/userValidation';
 import { Validator } from '../../models/types';
+import { toggleListTasks } from '../../store/tasksSlice';
 
 function Signup() {
   const dispatch: AppDispatch = useDispatch();
@@ -29,6 +30,7 @@ function Signup() {
 
     if (respond.hasError) {
       setMsgValidator(respond.msg);
+      dispatch(toggleListTasks(true));
       return;
     }
 
@@ -84,8 +86,10 @@ function Signup() {
           />
         </div>
         <hr />
-        {!requestStatus.loading && msgValidator && (
-          <p className={styles.error}>{msgValidator}</p>
+        {!requestStatus.loading && (msgValidator || requestStatus.msg) && (
+          <p className="msg error">
+            {msgValidator ? msgValidator : requestStatus.msg}
+          </p>
         )}
         <button type="submit" disabled={requestStatus.loading}>
           {requestStatus.loading ? 'Loading' : 'Create Account'}

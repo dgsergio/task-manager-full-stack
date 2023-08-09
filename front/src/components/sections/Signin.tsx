@@ -5,6 +5,12 @@ import { useRef, useState } from 'react';
 import { AppDispatch, RootState } from '../../store';
 import { signinValidation } from '../../utils/userValidation';
 import { Validator } from '../../models/types';
+import {
+  TaskReq,
+  callTaskApi,
+  searchTasks,
+  toggleListTasks,
+} from '../../store/tasksSlice';
 
 function Signin() {
   const dispatch: AppDispatch = useDispatch();
@@ -17,7 +23,6 @@ function Signin() {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const respond: Validator = signinValidation(
       emailRef.current!.value,
       passwordRef.current!.value
@@ -36,8 +41,21 @@ function Signin() {
       },
     };
     const noErrors = await dispatch(postUser(request));
-    if (noErrors) dispatch(toggleSignin(false));
-    else setMsgValidator(requestStatus.msg);
+    if (noErrors) {
+      dispatch(toggleSignin(false));
+      dispatch(toggleListTasks(true));
+      dispatch(searchTasks(undefined));
+
+      const userLocal = localStorage.getItem('user');
+
+      if (userLocal) {
+        const request: TaskReq = {
+          url: 'http://localhost:3000/api/v1/tasks',
+          token: JSON.parse(userLocal).token,
+        };
+        dispatch(callTaskApi(request));
+      }
+    } else setMsgValidator(requestStatus.msg);
   };
 
   return (
@@ -66,8 +84,10 @@ function Signin() {
           />
         </div>
         <hr />
-        {!requestStatus.loading && msgValidator && (
-          <p className={styles.error}>{msgValidator}</p>
+        {!requestStatus.loading && (msgValidator || requestStatus.msg) && (
+          <p className="msg error">
+            {msgValidator ? msgValidator : requestStatus.msg}
+          </p>
         )}
         <button type="submit" disabled={requestStatus.loading}>
           {requestStatus.loading ? 'Loading' : 'Send'}

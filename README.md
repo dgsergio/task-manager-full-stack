@@ -23,8 +23,11 @@ Create a task manager app
   - [x] Fn validator maximum characteres for title and description
   - [x] Search task in nav
   - [x] Navegation user name capitalize
+  - [x] Every time user change reload list of task
+  - [x] fix bug no showing err msg first time signin
+  - [x] loading tasks state
+  - [ ] cRud
   - [ ] Select one title H1
-  - [ ] Evrey time user change reload list of task
 
 - [x] Back-end development
 

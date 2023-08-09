@@ -15,6 +15,7 @@ export interface TaskState {
   searchedTasks: TaskType[] | undefined;
   idSelected: string;
   showManager: boolean;
+  showListTasks: boolean;
   requestStatus: { loading: boolean; msg: string };
 }
 
@@ -23,6 +24,7 @@ const initialState: TaskState = {
   searchedTasks: undefined,
   idSelected: '',
   showManager: false,
+  showListTasks: false,
   requestStatus: { loading: false, msg: '' },
 };
 
@@ -50,15 +52,22 @@ export const tasksSlice = createSlice({
     toggleManager: (state, action: PayloadAction<boolean>) => {
       state.showManager = action.payload;
     },
+    toggleListTasks: (state, action: PayloadAction<boolean>) => {
+      state.showListTasks = action.payload;
+    },
     selectTask: (state, action: PayloadAction<string>) => {
       state.idSelected = action.payload;
     },
-    searchTasks: (state, action: PayloadAction<string>) => {
-      if (action.payload.trim() === '') state.searchedTasks = state.tasks;
+    searchTasks: (state, action: PayloadAction<string | undefined>) => {
+      if (action.payload === undefined) {
+        state.searchedTasks = undefined;
+        return;
+      } else if (action.payload.trim() === '')
+        state.searchedTasks = state.tasks;
       state.searchedTasks = state.tasks.filter((task) => {
         const descLowerCase = task.description.toLowerCase();
         const titleLowerCase = task.title?.toLowerCase() || '';
-        const queryLowerCase = action.payload.toLowerCase();
+        const queryLowerCase = action.payload!.toLowerCase();
 
         return (
           descLowerCase.includes(queryLowerCase) ||
@@ -136,6 +145,7 @@ export const callTaskApi = (req: TaskReq) => {
 
 export const {
   toggleManager,
+  toggleListTasks,
   populate,
   createTask,
   deleteTask,

@@ -5,3 +5,20 @@
   padding: 2rem 3.1rem;
   margin: 3.5rem auto 0;
 }
+
+.container footer {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--grey-500);
+  font-style: italic;
+  text-align: center;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+  padding: 0.7rem;
+  margin-top: 5rem;
+}
+
+.container a {
+  text-decoration: none;
+  color: var(--grey-500);
+}

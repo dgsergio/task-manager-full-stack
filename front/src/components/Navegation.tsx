@@ -21,7 +21,10 @@ function Navegation() {
     if (!userStore) {
       const userBrowserStored = localStorage.getItem('user');
       if (userBrowserStored) setUser(JSON.parse(userBrowserStored));
-      else setUser(undefined);
+      else {
+        setUser(undefined);
+        deleteQuery();
+      }
     } else setUser(userStore);
   }, [userStore, showOptions]);
 

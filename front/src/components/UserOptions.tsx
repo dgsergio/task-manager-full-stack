@@ -6,11 +6,13 @@ import {
   toggleSignin,
   toggleSignup,
 } from '../store/userSlice';
+import { populate, searchTasks, toggleListTasks } from '../store/tasksSlice';
 
 type Props = {
   user?: User;
   onShowOptions: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 function UserOptions({ onShowOptions, user }: Props) {
   const dispatch = useDispatch();
 
@@ -22,8 +24,11 @@ function UserOptions({ onShowOptions, user }: Props) {
 
   const logoutHandler = () => {
     onShowOptions(false);
-    dispatch(signinUser(undefined));
     localStorage.clear();
+    dispatch(signinUser(undefined));
+    dispatch(searchTasks(undefined));
+    dispatch(populate([]));
+    dispatch(toggleListTasks(false));
   };
 
   return (

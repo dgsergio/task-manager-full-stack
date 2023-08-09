@@ -31,6 +31,7 @@ export const userSlice = createSlice({
     },
     toggleSignup: (state, action: PayloadAction<boolean>) => {
       state.showSignup = action.payload;
+      state.requestStatus = { loading: false, msg: '' };
     },
     signinUser: (state, action: PayloadAction<User | undefined>) => {
       state.user = action.payload;
@@ -61,9 +62,7 @@ export const postUser = ({ url, body }: Req) => {
         body: JSON.stringify(body),
       });
       const data = await response.json();
-      console.log(body.name);
       if (!response.ok) throw new Error(data.msg);
-
       const {
         token,
         user: { name, id },
