@@ -1,6 +1,6 @@
 # Task Manager API
 
-MERN Stack
+MERN Stack app
 
 ## Front
 
