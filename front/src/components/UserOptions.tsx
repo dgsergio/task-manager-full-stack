@@ -29,6 +29,7 @@ function UserOptions({ onShowOptions, user }: Props) {
     dispatch(searchTasks(undefined));
     dispatch(populate([]));
     dispatch(toggleListTasks(false));
+    dispatch(toggleSignin(true));
   };
 
   return (

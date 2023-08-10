@@ -1,11 +1,13 @@
 .section {
   background-color: var(--blue-500);
   max-width: 24rem;
-  margin: 2rem auto;
+  margin: 1.5rem auto;
   border-radius: 1rem;
   padding: 2.2rem;
   box-shadow: 0.3rem 0.3rem 0.7rem rgb(0, 0, 0, 0.15);
   animation: fade-in 300ms ease-out;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fade-in {
@@ -24,51 +26,50 @@
 }
 
 .header h3 {
+  color: var(--grey-50);
   margin: 0;
   text-transform: uppercase;
-  color: var(--grey-50);
+  text-align: center;
+  width: 100%;
 }
 
-.body {
+.form {
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
 }
 
-.body hr {
+.section hr {
   width: 100%;
   opacity: 0.3;
 }
 
 .section button {
+  color: var(--blue-400);
   background-color: transparent;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.section button:hover {
+  color: var(--grey-50);
+}
+
+.form button {
   font-size: 1.1rem;
-  text-transform: uppercase;
   color: var(--blue-400);
   font-weight: 500;
-}
-
-.header button {
-  padding: 0;
-  padding: 0.3rem 0.6rem;
-}
-
-.header button:hover {
-  background-color: #d64343;
-  color: #ffb5b5;
-}
-
-.body button {
+  text-transform: uppercase;
   margin-top: 0.8rem;
 }
 
-.body button:hover {
-  background-color: var(--yellow);
+.form button:hover {
   color: var(--blue-500);
+  background-color: var(--yellow);
 }
 
-.body button:disabled,
-.body button:disabled:hover {
+.form button:disabled,
+.form button:disabled:hover {
   cursor: not-allowed;
   background-color: transparent;
   color: var(--grey-500);

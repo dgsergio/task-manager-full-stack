@@ -14,7 +14,7 @@ A task manager api with node.js, express and atlas cloud mongoDB.
 
 Create a task manager app
 
-- [ ] front-end development
+- [x] front-end development
 
   - [x] Create a ReactJS front-end
   - [x] Find a cool ui design
@@ -28,7 +28,7 @@ Create a task manager app
   - [x] loading tasks state
   - [x] do not show search form on nav when log out
   - [x] CRUD
-  - [ ] Select one title H1, maybe in the nav?
+  - [x] Select one title H1
 
 - [x] Back-end development
 

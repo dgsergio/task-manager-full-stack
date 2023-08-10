@@ -1,7 +1,14 @@
 .tasks {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1.8rem;
+}
+
+@media (min-width: 480px) {
+  .tasks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .header {

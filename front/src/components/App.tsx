@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import Header from './components/Header';
+import Header from './Header';
 import styles from './App.module.css';
-import ListTasks from './components/sections/ListTasks';
-import TaskManager from './components/sections/TaskManager';
+import ListTasks from './sections/ListTasks';
+import TaskManager from './sections/TaskManager';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from './store';
-import { TaskReq, callTaskApi, toggleListTasks } from './store/tasksSlice';
+import { AppDispatch, RootState } from '../store';
+import { TaskReq, callTaskApi, toggleListTasks } from '../store/tasksSlice';
+import Footer from './Footer';
+import { toggleSignin } from '../store/userSlice';
 
 function App() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -31,11 +33,13 @@ function App() {
     const userLocal = localStorage.getItem('user');
     if (userLocal) {
       const request: TaskReq = {
-        url: 'http://localhost:3000/api/v1/tasks',
+        url: import.meta.env.VITE_SERVER_URL + 'tasks',
         token: JSON.parse(userLocal).token,
       };
       dispatch(callTaskApi(request));
       dispatch(toggleListTasks(true));
+    } else {
+      dispatch(toggleSignin(true));
     }
   }, [user]);
 
@@ -62,12 +66,7 @@ function App() {
           </>
         )}
       </main>
-      <footer>
-        <a href="http://pixel40.com.ar" target="_blank">
-          Pixel40's Dev
-        </a>
-        <div>*You must sign in to use this app</div>
-      </footer>
+      <Footer />
     </div>
   );
 }

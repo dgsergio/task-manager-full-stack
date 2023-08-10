@@ -8,6 +8,7 @@
   --blue-500: #295fb6;
   --blue-900: #0d1823;
   --grey-50: #f4f5f9;
+  --grey-100: #e3e3e8;
   --grey-300: #a4a8ab;
   --grey-500: #6f7475;
   --grey-600: #515557;
@@ -34,11 +35,18 @@ body {
   font-family: 'REM', sans-serif;
 }
 
-h1,
 h2,
 h3 {
   font-weight: 500;
   color: var(--black);
+}
+
+h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--grey-500);
+  font-size: 1.2rem;
 }
 
 p {

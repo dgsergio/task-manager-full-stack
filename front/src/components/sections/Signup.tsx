@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Sign.module.css';
-import { postUser, toggleSignup } from '../../store/userSlice';
+import { postUser, toggleSignin, toggleSignup } from '../../store/userSlice';
 import { useRef, useState } from 'react';
 import { AppDispatch, RootState } from '../../store';
 import { signupValidation } from '../../utils/userValidation';
@@ -35,7 +35,7 @@ function Signup() {
     }
 
     const request = {
-      url: 'http://localhost:3000/api/v1/signup',
+      url: import.meta.env.VITE_SERVER_URL + 'signup',
       body: {
         name: nameRef.current!.value,
         email: emailRef.current!.value,
@@ -47,13 +47,17 @@ function Signup() {
     else setMsgValidator(requestStatus.msg);
   };
 
+  const switchSign = () => {
+    dispatch(toggleSignup(false));
+    dispatch(toggleSignin(true));
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.header}>
         <h3>Register</h3>
-        <button onClick={() => dispatch(toggleSignup(false))}>x</button>
       </div>
-      <form className={styles.body} onSubmit={submitHandler}>
+      <form className={styles.form} onSubmit={submitHandler}>
         <div className={styles.field}>
           <label htmlFor="name">Name</label>
           <input type="name" id="text" ref={nameRef} placeholder="john" />
@@ -85,7 +89,6 @@ function Signup() {
             ref={repeatPasswordRef}
           />
         </div>
-        <hr />
         {!requestStatus.loading && (msgValidator || requestStatus.msg) && (
           <p className="msg error">
             {msgValidator ? msgValidator : requestStatus.msg}
@@ -95,6 +98,8 @@ function Signup() {
           {requestStatus.loading ? 'Loading' : 'Create Account'}
         </button>
       </form>
+      <hr />
+      <button onClick={switchSign}>Already a user? LOG-IN</button>
     </section>
   );
 }

@@ -49,6 +49,16 @@ export const tasksSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    completeTask: (
+      state,
+      action: PayloadAction<{ id: string; isCompleted: boolean }>
+    ) => {
+      state.tasks = state.tasks.map((task) =>
+        task.id === action.payload.id
+          ? { ...task, completed: action.payload.isCompleted }
+          : task
+      );
+    },
     toggleManager: (state, action: PayloadAction<boolean>) => {
       state.showManager = action.payload;
     },
@@ -100,6 +110,7 @@ export type TaskReq = {
     title?: string;
     description: string;
     color?: string;
+    completed?: boolean;
   };
 };
 
@@ -140,6 +151,7 @@ export const callTaskApi = (req: TaskReq) => {
         dispatch(populate(transformedData));
       }
       dispatch(setStatus({ loading: false, msg: '' }));
+      return data;
     } catch (err: any) {
       dispatch(setStatus({ loading: false, msg: err.message }));
     }
@@ -155,6 +167,7 @@ export const {
   selectTask,
   searchTasks,
   setStatus,
+  completeTask,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

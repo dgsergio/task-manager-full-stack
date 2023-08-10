@@ -1,6 +1,15 @@
-.card {
+.card,
+.completed {
   animation: fadeIn 300ms ease-in;
   position: relative;
+}
+
+.completed,
+.completed p,
+.completed h3 {
+  text-decoration: line-through;
+  background-color: var(--grey-100) !important;
+  color: var(--grey-300) !important;
 }
 
 @keyframes fadeIn {

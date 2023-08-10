@@ -38,7 +38,7 @@ function TaskManager() {
     setColorTask(e.target.value);
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(searchTasks(undefined));
 
@@ -56,7 +56,7 @@ function TaskManager() {
     }
 
     const newTask: TaskType = {
-      id: taskSelected?.id || Date.now().toString(),
+      id: taskSelected?.id || 'NO_ID',
       title: titleRef.current?.value || '',
       color: colorTask,
       completed: taskSelected?.completed || false,
@@ -65,9 +65,9 @@ function TaskManager() {
 
     const token = JSON.parse(localStorage.getItem('user')!).token;
     if (!taskSelected) {
-      dispatch(
+      const newId = await dispatch(
         callTaskApi({
-          url: 'http://localhost:3000/api/v1/tasks',
+          url: import.meta.env.VITE_SERVER_URL + 'tasks',
           token,
           method: 'POST',
           body: {
@@ -77,10 +77,11 @@ function TaskManager() {
           },
         })
       );
+      dispatch(createTask({ ...newTask, id: newId._id }));
     } else {
       dispatch(
         callTaskApi({
-          url: 'http://localhost:3000/api/v1/tasks/' + newTask.id,
+          url: import.meta.env.VITE_SERVER_URL + 'tasks/' + newTask.id,
           token,
           method: 'PATCH',
           body: {
@@ -90,8 +91,8 @@ function TaskManager() {
           },
         })
       );
+      dispatch(createTask(newTask));
     }
-    dispatch(createTask(newTask));
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Sign.module.css';
-import { postUser, toggleSignin } from '../../store/userSlice';
+import { postUser, toggleSignin, toggleSignup } from '../../store/userSlice';
 import { useRef, useState } from 'react';
 import { AppDispatch, RootState } from '../../store';
 import { signinValidation } from '../../utils/userValidation';
@@ -34,7 +34,7 @@ function Signin() {
     }
 
     const request = {
-      url: 'http://localhost:3000/api/v1/login',
+      url: import.meta.env.VITE_SERVER_URL + 'login',
       body: {
         email: emailRef.current!.value,
         password: passwordRef.current!.value,
@@ -50,7 +50,7 @@ function Signin() {
 
       if (userLocal) {
         const request: TaskReq = {
-          url: 'http://localhost:3000/api/v1/tasks',
+          url: import.meta.env.VITE_SERVER_URL + 'tasks',
           token: JSON.parse(userLocal).token,
         };
         dispatch(callTaskApi(request));
@@ -58,13 +58,17 @@ function Signin() {
     } else setMsgValidator(requestStatus.msg);
   };
 
+  const switchSign = () => {
+    dispatch(toggleSignin(false));
+    dispatch(toggleSignup(true));
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.header}>
         <h3>Log-in</h3>
-        <button onClick={() => dispatch(toggleSignin(false))}>x</button>
       </div>
-      <form className={styles.body} onSubmit={submitHandler}>
+      <form className={styles.form} onSubmit={submitHandler}>
         <div className={styles.field}>
           <label htmlFor="email">Email</label>
           <input
@@ -83,7 +87,6 @@ function Signin() {
             placeholder="******"
           />
         </div>
-        <hr />
         {!requestStatus.loading && (msgValidator || requestStatus.msg) && (
           <p className="msg error">
             {msgValidator ? msgValidator : requestStatus.msg}
@@ -93,6 +96,8 @@ function Signin() {
           {requestStatus.loading ? 'Loading' : 'Send'}
         </button>
       </form>
+      <hr />
+      <button onClick={switchSign}>Need an account? REGISTER</button>
     </section>
   );
 }
