@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
   res.status(200).send('<h1>Task Manager API</h1>');
 });
 
+app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cors());
 const limiter = rateLimit({
