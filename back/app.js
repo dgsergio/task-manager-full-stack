@@ -17,23 +17,23 @@ app.get('/', (req, res) => {
 
 app.use(helmet());
 app.use(cors());
-
-app.use(express.json());
-app.use('/api/v1', authRoutes);
-app.use('/api/v1/tasks', authorization, tasksRoutes);
-app.use(notFound);
-app.use(errorHandler);
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
 app.use(limiter);
 
+app.use(express.json());
+app.use('/api/v1', authRoutes);
+app.use('/api/v1/tasks', authorization, tasksRoutes);
+app.use(notFound);
+app.use(errorHandler);
+
 const start = async () => {
   const port = process.env.PORT || 3000;
   try {
+    connectDB(process.env.MONGO_URI);
     app.listen(port, () => {
-      connectDB(process.env.MONGO_URI);
       console.log(`➜  Server is listening:   http://localhost:${port}/`);
     });
   } catch (err) {
