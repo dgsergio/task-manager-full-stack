@@ -1,43 +1,31 @@
 # Task Manager API
 
-MERN Stack app
+This is a full-stack application that allows managing daily tasks. You can visit a live version at the following link:
+https://steady-moonbeam-9fd1e7.netlify.app/
+
+## MERN stack
+
+- MongoDB
+- Express.js
+- ReactJS
+- Node.js
 
 ## Front
 
-A task manager app with ReactJS.
+For this application, the Vite build tool was used to leverage the ReactJS library with TypeScript.
+
+To manage the state across all components, the Redux Toolkit dependency was utilized. CRUD functions were applied by integrating the corresponding API of this stack.
+
+Styles were applied using the concept of CSS modules to limit their scope to each component, achieving a fully responsive website.
+
+Finally, the application was hosted on the publicly available Netlify platform.
 
 ## Back
 
-A task manager api with node.js, express and atlas cloud mongoDB.
+The API was constructed using node.js and express.js, strategically employing their capabilities to create a powerful backend infrastructure.
 
-### TODO
+MongoDB Atlas in the cloud was selected for its intuitive collection management, enhancing data organization and efficiency. The Mongoose.js library was employed to establish the connection between MongoDB and Node.js.
 
-Create a task manager app
+The JWT token system was implemented to maintain user sessions and enable authorized access to the database-stored data and passwords were securely hashed using bcryptjs, ensuring their storage in the database with robust protection.
 
-- [x] front-end development
-
-  - [x] Create a ReactJS front-end
-  - [x] Find a cool ui design
-  - [x] Select a font
-  - [x] Assign a color to the tasks
-  - [x] Fn validator maximum characteres for title and description
-  - [x] Search task in nav
-  - [x] Navegation user name capitalize
-  - [x] Every time user change reload list of task
-  - [x] fix bug no showing err msg first time signin
-  - [x] loading tasks state
-  - [x] do not show search form on nav when log out
-  - [x] CRUD
-  - [x] Select one title H1
-
-- [x] Back-end development
-
-  - [x] Login and register functions
-  - [x] authorize with token
-  - [x] you only be able to manage your own tasks
-  - [x] Hash Password (with bcryptjs)
-  - [x] Mongoose Errors
-  - [x] Security: helmet, cors, express-rate-limit
-  - [x] Add "color" to models
-
-- [x] Make it work together
+Subsequently, the application was seamlessly deployed on Cyclic's servers, establishing a dependable online presence and facilitating seamless integration with the frontend components of this technology stack.
